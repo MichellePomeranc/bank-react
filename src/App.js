@@ -5,6 +5,7 @@ import './App.css';
 import Operations from './components/Operations';
 import Transactions from './components/Transactions';
 import axios from 'axios';
+import Breakdown from './components/Breakdown';
 
 class App extends Component {
   constructor() {
@@ -43,26 +44,32 @@ class App extends Component {
 
 
   deleteTransaction = async (transaction) => {
-    await axios.delete('http://localhost:8080/transaction', {data: { id: transaction._id }})
+    await axios.delete('http://localhost:8080/transaction', { data: { id: transaction._id } })
     let response = await this.getTransactions()
     this.setState({ transactions: response.data })
   }
 
-    render() {
-      return (
-        <Router>
-          <div className="App">
-            <h1> MPM BANK</h1>
-            <Link to="/"> Home </Link>
-            <Link to="/transactions"> Transactions </Link>
-            <Link to="/operations"> Operations </Link>
-            <div>Balance: ${this.getBalance()}</div>
-            <Route path="/transactions" exact render={() => <Transactions deleteTransaction={this.deleteTransaction} addTransaction={this.addTransaction} transactions={this.state.transactions} />} />
-            <Route path="/operations" exact render={() => <Operations addTransaction={this.addTransaction} />} />
+  render() {
+    let color
+    this.getBalance() < 500 ? color = 'red' : color = 'green'
+    return (
+      <Router>
+        <div className="App">
+          <h1> MPM BANK</h1>
+          <div className="menuLinks">
+            <div><Link to="/transactions"> Transactions </Link></div>
+            <div><Link to="/operations"> Operations </Link></div>
+            <div><Link to="/breakdown"> Breakdown </Link></div>
           </div>
-        </Router>
-      );
-    }
-  }
+          <div className="balance" style={{ color: color }}>Balance: ${this.getBalance()}</div>
+          <Route path="/transactions" exact render={() => <Transactions deleteTransaction={this.deleteTransaction} addTransaction={this.addTransaction} transactions={this.state.transactions} />} />
+          <Route path="/operations" exact render={() => <Operations addTransaction={this.addTransaction} />} />
+          <Route path="/breakdown" exact render={() => <Breakdown transactions={this.state.transactions} />} />
 
-  export default App;
+        </div>
+      </Router>
+    );
+  }
+}
+
+export default App;

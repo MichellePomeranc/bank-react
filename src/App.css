@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: lightsteelblue;
 }
 
 .App-logo {
@@ -38,12 +39,11 @@
 }
 
 
-#transactions td, #transactions th {
+#transactions td, #transactions th {  
   text-align: center;
   border: 1px solid black;
   padding: 8px;
 }
-
 
 
 .Deposit {
@@ -83,5 +83,36 @@ input {
   margin-left: 5px;
 }
 
+.menuLinks {
+  color: white;
+  font-size: 20px;
+  background-color: lightseagreen;
+  cursor: pointer;
+  font-weight: 600;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+h1 {
+  font-size: 30px;
+  background-color: gray;
+  color: white;
+}
+
+.balance {
+  margin: 25px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.categories {
+  border: black 1px solid;
+}
+
+.expensesBreakdown {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
 
 

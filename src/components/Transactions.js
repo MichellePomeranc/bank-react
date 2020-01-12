@@ -18,7 +18,7 @@ class Transactions extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.props.transactions.map(transaction => <Transaction key={transaction.amount + transaction.category + transaction.category} transactions={this.props.transactions} amount={transaction.amount} vendor={transaction.vendor} category={transaction.category} deleteTransaction={this.props.deleteTransaction} />)}
+                        {this.props.transactions.map(transaction => <Transaction key={transaction.amount + transaction.category + transaction.category} transaction={transaction} amount={transaction.amount} vendor={transaction.vendor} category={transaction.category} deleteTransaction={this.props.deleteTransaction} />)}                    
                     </tbody>
                 </table>
             </div>
